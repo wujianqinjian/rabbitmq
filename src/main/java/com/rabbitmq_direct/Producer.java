@@ -1,10 +1,10 @@
-package com.new_rabbitmq;
+package com.rabbitmq_direct;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-public class Produce {
+public class Producer {
 
     public static void main(String[] args) throws Exception{
         ConnectionFactory connectionFactory= new ConnectionFactory();

@@ -1,7 +1,6 @@
-package com.new_rabbitmq;
+package com.rabbitmq_topic_unfinished;
 
 import com.rabbitmq.client.*;
-
 
 import java.io.IOException;
 
