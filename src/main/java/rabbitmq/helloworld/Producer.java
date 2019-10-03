@@ -1,19 +1,15 @@
-package com.rabbitmq_direct;
+package rabbitmq.helloworld;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import rabbitmq.tools.RabbitGetConnection;
 
 public class Producer {
 
     public static void main(String[] args) throws Exception{
-        ConnectionFactory connectionFactory= new ConnectionFactory();
-        connectionFactory.setHost("123.206.224.131");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
-        Connection connection=connectionFactory.newConnection();
+        Connection connection= RabbitGetConnection.getConnection();
         Channel channel=connection.createChannel();
-
         String exchangeName="test_direct_exchange";
         String routingKey="test.direct";
         String msg="This is a special message!";

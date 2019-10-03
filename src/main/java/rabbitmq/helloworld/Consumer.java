@@ -1,6 +1,7 @@
-package com.rabbitmq_topic_unfinished;
+package rabbitmq.helloworld;
 
 import com.rabbitmq.client.*;
+
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ public class Consumer {
         //声明交换机、队列相关属性
         String exchangeName="test_direct_exchange";
         String exchangeType="direct";
-        String queueName="test_direct_queue";
+        String queueName="test_direct_queue3";
         String routingKey="test.direct";
         //声明一个交换机
         channel.exchangeDeclare(exchangeName,exchangeType,true,false,false,null);
