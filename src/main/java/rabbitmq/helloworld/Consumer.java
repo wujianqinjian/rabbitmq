@@ -1,6 +1,7 @@
 package rabbitmq.helloworld;
 
 import com.rabbitmq.client.*;
+import rabbitmq.tools.RabbitGetConnection;
 
 
 import java.io.IOException;
@@ -10,11 +11,7 @@ public class Consumer {
 
     public static void main(String[] args) throws Exception{
         //创建链接
-        ConnectionFactory connectionFactory= new ConnectionFactory();
-        connectionFactory.setHost("123.206.224.131");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
-        Connection connection=connectionFactory.newConnection();
+        Connection connection= RabbitGetConnection.getConnection();
         //创建一个管道
         Channel channel=connection.createChannel();
 

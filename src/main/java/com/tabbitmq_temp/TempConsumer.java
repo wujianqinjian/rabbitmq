@@ -2,6 +2,7 @@ package com.tabbitmq_temp;
 
 import ch.qos.logback.core.util.ContextUtil;
 import com.rabbitmq.client.*;
+import rabbitmq.tools.RabbitGetConnection;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -10,14 +11,11 @@ import java.util.concurrent.TimeoutException;
 public class TempConsumer {
     public static void main(String[] args) throws Exception{
 
-        ConnectionFactory connectionFactory=new ConnectionFactory();
-        connectionFactory.setHost("123.206.224.131");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
+
 
         try {
-            Connection connectionConsumer=connectionFactory.newConnection();
-            Channel channel=connectionConsumer.createChannel();
+            Connection connection= RabbitGetConnection.getConnection();
+            Channel channel=connection.createChannel();
         //声明交换机属性
         String exchangeName="test_direct_exchange";
         String exchangeType="test.direct";

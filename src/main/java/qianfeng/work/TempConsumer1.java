@@ -1,6 +1,7 @@
 package qianfeng.work;
 
 import com.rabbitmq.client.*;
+import rabbitmq.tools.RabbitGetConnection;
 
 import java.io.IOException;
 
@@ -9,12 +10,7 @@ public class TempConsumer1 {
     private static final String queueName="mqWork";
 
     public static void main(String[] args) throws Exception{
-        ConnectionFactory connectionFactory=new ConnectionFactory();
-        connectionFactory.setHost("123.206.224.131");
-        connectionFactory.setVirtualHost("/");
-        connectionFactory.setPort(5672);
-
-        Connection connection=connectionFactory.newConnection();
+        Connection connection= RabbitGetConnection.getConnection();
         Channel channel=connection.createChannel();
         channel.queueDeclare( queueName, false, false, false, null);
 

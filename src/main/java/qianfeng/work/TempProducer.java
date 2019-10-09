@@ -3,6 +3,7 @@ package qianfeng.work;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import rabbitmq.tools.RabbitGetConnection;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -10,17 +11,10 @@ import java.util.concurrent.TimeoutException;
 public class TempProducer {
 
     private static final String queueName="mqWork";
-    public static void main(String[] args) {
-        //1.创建连接工厂
-        ConnectionFactory connectionFactoryCm=new ConnectionFactory();
-        connectionFactoryCm.setPort(5672);
-        //主机地址
-        connectionFactoryCm.setHost("123.206.224.131");
-        //主机目录
-        connectionFactoryCm.setVirtualHost("/");
+    public static void main(String[] args) throws Exception{
         //2.创建连接
         try {
-            Connection connection =connectionFactoryCm.newConnection();
+            Connection connection= RabbitGetConnection.getConnection();
         //3.创建消息信道
             Channel channel=connection.createChannel();
         //4.声明队列
