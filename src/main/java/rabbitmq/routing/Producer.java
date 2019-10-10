@@ -1,8 +1,7 @@
-package rabbitmq.helloworld;
+package rabbitmq.routing;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 import rabbitmq.tools.RabbitGetConnection;
 
 public class Producer {
@@ -16,11 +15,12 @@ public class Producer {
         //声明队列
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         //发送消息
-        String msg="国庆第一条消息!";
+
         //channel.basicPublish("","",QUEUE_NAME,null,msg.getBytes());
-        for (int i = 1; i < 3; i++) {
+        for (int i = 1; i < 100; i++) {
+            String msg="国庆第"+i+"条消息!";
             channel.basicPublish("", QUEUE_NAME, null, msg.getBytes());
-            Thread.sleep(10);
+            Thread.sleep(100);
             System.out.println(msg);
         }
         //关闭链接
