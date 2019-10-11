@@ -1,11 +1,11 @@
-package qianfeng.work;
+package rabbitmq.work;
 
 import com.rabbitmq.client.*;
 import rabbitmq.tools.RabbitGetConnection;
 
 import java.io.IOException;
 
-public class TempConsumer1 {
+public class Consumer1 {
 
     private static final String queueName="mqWork";
 
@@ -18,11 +18,11 @@ public class TempConsumer1 {
         DefaultConsumer defaultConsumer=new DefaultConsumer(channel){
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException{
-                System.out.println("消费者2收到的消息:   "+new String(body));
+                System.out.println("消费者1：现在接收到: 第"+new String(body)+"条消息");
                 try {
-                    Thread.sleep(11);
+                    Thread.sleep(500);
                 }catch (Exception e){
-
+                    System.out.print("");
                 }
                 channel.basicAck(envelope.getDeliveryTag(), false);
             }

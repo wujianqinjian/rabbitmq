@@ -1,14 +1,13 @@
-package qianfeng.work;
+package rabbitmq.work;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 import rabbitmq.tools.RabbitGetConnection;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-public class TempProducer {
+public class Producer2 {
 
     private static final String queueName="mqWork";
     public static void main(String[] args) throws Exception{
@@ -20,16 +19,18 @@ public class TempProducer {
         //4.声明队列
             channel.queueDeclare(queueName, false, false, false, null);
         //5.发送消息
-            String msg="This is tmp message";
+            String msg="生产者2开始发送第";
+            String msg_end="条消息";
             //channel.basicPublish(exchangeName,queueName, null, msg.getBytes());
-            for (int i = 0; i < 100; i++) {
-                channel.basicPublish("", queueName, null, ("发送的消息"+i).getBytes());
-                System.out.print(i+""+"----");
-                System.out.println(msg.getBytes());
+            for (int i = 1; i < 1010; i++) {
+                channel.basicPublish("", queueName, null, (msg+i).getBytes());
+                System.out.print(msg+i+msg_end);
+                System.out.println(msg);
             }
 
             channel.close();
             connection.close();
+            Thread.sleep(100);
         }catch (IOException e){
 
         }catch (TimeoutException e){
