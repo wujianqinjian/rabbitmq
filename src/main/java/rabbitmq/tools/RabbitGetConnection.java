@@ -13,8 +13,8 @@ public class RabbitGetConnection{
         connectionFactory.setHost("123.206.224.131");
         connectionFactory.setVirtualHost("/");
         connectionFactory.setPort(5672);
-        connectionFactory.setUsername("guest");
-        connectionFactory.setPassword("guest");
+        //connectionFactory.setUsername("guest");
+        //connectionFactory.setPassword("guest");
         Connection connection=connectionFactory.newConnection();
         System.out.println(connection);
         return connectionFactory.newConnection();

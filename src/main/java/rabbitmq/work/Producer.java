@@ -30,7 +30,6 @@ public class Producer {
 
             channel.close();
             connection.close();
-            Thread.sleep(100);
         }catch (IOException e){
 
         }catch (TimeoutException e){

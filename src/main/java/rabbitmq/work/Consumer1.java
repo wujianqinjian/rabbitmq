@@ -19,12 +19,14 @@ public class Consumer1 {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException{
                 System.out.println("消费者1：现在接收到: 第"+new String(body)+"条消息");
+                channel.basicQos(1);
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1);
                 }catch (Exception e){
                     System.out.print("");
                 }
                 channel.basicAck(envelope.getDeliveryTag(), false);
+
             }
         };
         channel.basicConsume(queueName, false, defaultConsumer);

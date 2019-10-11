@@ -20,8 +20,9 @@ public class Consumer2 {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException{
                 System.out.println("消费者2：现在接收到: 第"+new String(body)+"条消息");
                 channel.basicAck(envelope.getDeliveryTag(), false);
+                channel.basicQos(3);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(1);
                 }catch (InterruptedException e){
                     System.out.print("");
                 }
